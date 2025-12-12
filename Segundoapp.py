@@ -14,12 +14,12 @@ def confirmar_dados(nome, idade, genero):
     # normaliza: tira espaços e passa pra minusculo
     g = genero.strip().lower()
     if g in ["masculino", "m", "masc"]:
-        if int(idade) > 18:
+        if int(idade) < 18:
             st.success(f"Perfeito! Então você é o mano {nome} e você tem {int(idade)} anos. É uma criança ainda kkkkk")
         else:
             st.success(f"Perfeito! Então você é o mano {nome} e você tem {int(idade)} anos. Hum já é um adultinho ein")
     elif g in ["feminino", "f", "fem"]:
-        if int(idade) > 18:
+        if int(idade) < 18:
             st.success(f"Perfeito! Então você é a mana {nome} e você tem {int(idade)} anos. É uma princesinha ainda kkkkk")
         else:
             st.success(f"Perfeito! Então você é a mana {nome} e você tem {int(idade)} anos. Hum já é uma garota adulta ein")
@@ -32,3 +32,4 @@ if st.button("Enviar"):
         st.error("Por favor, preencha o nome.")
     else:
         confirmar_dados(nome, idade, genero)
+
