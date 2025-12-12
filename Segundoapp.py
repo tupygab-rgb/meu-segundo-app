@@ -23,6 +23,11 @@ def confirmar_dados(nome, idade, genero):
             st.success(f"Perfeito! Então você é a mana {nome} e você tem {int(idade)} anos. É uma princesinha ainda kkkkk")
         else:
             st.success(f"Perfeito! Então você é a mana {nome} e você tem {int(idade)} anos. Hum já é uma garota adulta ein")
+    elif g in ["não-binário", "trans", "não-binarie"]:
+        if int(idade) < 18:
+            st.success(f"Perfeito! Então você é o queride {nome} e você tem {int(idade)} anos. É nove ainda kkkkk")
+        else:
+            st.success(f"Perfeito! Então você é o queride {nome} e você tem {int(idade)} anos. Hum já é um garote adulte ein")
     else:
         st.warning("Escreve direito, bobão🥱")
 
@@ -32,4 +37,5 @@ if st.button("Enviar"):
         st.error("Por favor, preencha o nome.")
     else:
         confirmar_dados(nome, idade, genero)
+
 
