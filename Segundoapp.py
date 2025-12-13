@@ -56,7 +56,7 @@ tmb = None
 gcd = None
 resultado = None
 
-if sexo != "Selecione..." and idade > 0 and peso > 0 and altura > 0:
+if sexo != "Selecione..." and idade and peso and altura:
     tmb = calcular_tmb(idade, peso, altura, sexo)
     st.divider()
     st.subheader("🔥 Gasto Calórico Base (TMB)")
@@ -164,4 +164,5 @@ Além disso, esta ferramenta foi desenvolvida de forma amadora, sem formação p
 ✨ Mais importante do que contar calorias é ouvir seu corpo  
 e escolher alimentos que promovam saúde, equilíbrio e vitalidade.
 """)
+
 
