@@ -150,7 +150,7 @@ if resultado is not None:
 if resultado is not None:
     st.divider()
 
-    st.markdown(f"**{nome}**, espero que de alguma forma eu possa ter te ajudado com essa calculadora! 👊")
+    st.markdown(f"<b>{nome}<b>, espero que de alguma forma eu possa ter te ajudado com essa calculadora! 👊", unsafe_allow_html=True)
 
 with st.expander("⚠️ Aviso Importante"):
             st.warning("""
@@ -172,6 +172,7 @@ if resultado is not None:
         st.write("Com os macros na palma da sua mão🤌, agora é só ficar atento a tabela nutricional do alimentos, anotar o que ingeriu e pronto!")
         st.info("Observação: existem vários aplicativos que facilitam essa anotação...")
         
+
 
 
 
