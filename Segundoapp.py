@@ -35,13 +35,13 @@ st.subheader("📏 Dados Corporais")
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    idade = st.number_input("Idade", min_value=10, max_value=150, step=1)
+    idade = st.number_input("Idade", min_value=10, max_value=150, step=1, value = None)
 
 with col2:
-    peso = st.number_input("Peso (kg)", min_value=30.0, max_value=400.0, step=0.1)
+    peso = st.number_input("Peso (kg)", min_value=30.0, max_value=400.0, step=0.1, value = None)
 
 with col3:
-    altura = st.number_input("Altura (cm)", min_value=100, max_value=300, step=1)
+    altura = st.number_input("Altura (cm)", min_value=100, max_value=300, step=1, value = None)
 
 # ===============================
 # CÁLCULO DA TMB
@@ -164,3 +164,4 @@ Além disso, esta ferramenta foi desenvolvida de forma amadora, sem formação p
 ✨ Mais importante do que contar calorias é ouvir seu corpo  
 e escolher alimentos que promovam saúde, equilíbrio e vitalidade.
 """)
+
