@@ -168,8 +168,10 @@ Além disso, essa calculadora foi feita de forma amadora, sem qualquer formaçã
         seu corpo é uma excelente máquina para produzir o que você precisa, deixe-o trabalhar, evite alimentos muito processados."
         Fortaleça corpo💪, mente🧠 e espírito🙏
         """)
-st.write("Com os macros na palma da sua mão🤌, agora é só ficar atento a tabela nutricional do alimentos, anotar o que ingeriu e pronto!")
-st.info("Observação: existem vários aplicativos que facilitam essa anotação...")
+if resultado is not None:
+        st.write("Com os macros na palma da sua mão🤌, agora é só ficar atento a tabela nutricional do alimentos, anotar o que ingeriu e pronto!")
+        st.info("Observação: existem vários aplicativos que facilitam essa anotação...")
+        
 
 
 
