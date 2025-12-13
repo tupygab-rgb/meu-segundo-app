@@ -166,6 +166,9 @@ with st.expander("⚠️ Aviso Importante"):
         ✨ Mais importante do que contar calorias é ouvir seu corpo  
         e escolher alimentos que promovam saúde, equilíbrio e vitalidade.
         """)
+st.write("Com os macros na palma da sua mão🤌, agora é só ficar atento a tabela nutricional do alimentos, anotar o que ingeriu e pronto!"
+st.info("Obs:tem vários aplicativos que facilitam essa anotação...")
+
 
 
 
