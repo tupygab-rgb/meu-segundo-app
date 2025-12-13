@@ -163,11 +163,14 @@ Além disso, essa calculadora foi feita de forma amadora, sem qualquer formaçã
         """)
         
             st.markdown("""
-        ✨ Mais importante do que contar calorias é ouvir seu corpo  
-        e escolher alimentos que promovam saúde, equilíbrio e vitalidade.
+        **Opinião do autor**: "Acredito que uma dieta assim, vai te trazer mudanças estéticas muito boas sim, mas quando se fala de saúde e vitalidade,
+        o mais importante é o consumo de alimentos naturais, e reconhecer a importância do carboidratos (cereais, legumes, frutas), mais que isso,
+        seu corpo é uma excelente máquina para produzir o que você precisa, deixe-o trabalhar, evite alimentos muito processados."
+        Fortaleça corpo💪, mente🧠 e espírito🙏
         """)
 st.write("Com os macros na palma da sua mão🤌, agora é só ficar atento a tabela nutricional do alimentos, anotar o que ingeriu e pronto!")
 st.info("Observação: existem vários aplicativos que facilitam essa anotação...")
+
 
 
 
