@@ -149,7 +149,7 @@ if resultado is not None:
 if resultado is not None:
     st.divider()
 
-    st.markdown(f"**{nome}**,espero que de alguma forma eu possa ter te ajudado com essa calculadora! 👊")
+    st.markdown(f"**{nome}**, espero que de alguma forma eu possa ter te ajudado com essa calculadora! 👊")
 
     st.warning("""
 ⚠️ **Importante**  
@@ -164,6 +164,7 @@ Além disso, esta ferramenta foi desenvolvida de forma amadora, sem formação p
 ✨ Mais importante do que contar calorias é ouvir seu corpo  
 e escolher alimentos que promovam saúde, equilíbrio e vitalidade.
 """)
+
 
 
 
