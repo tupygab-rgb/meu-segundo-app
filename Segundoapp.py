@@ -151,19 +151,21 @@ if resultado is not None:
 
     st.markdown(f"**{nome}**, espero que de alguma forma eu possa ter te ajudado com essa calculadora! 👊")
 
-    st.warning("""
-⚠️ **Importante**  
-Uma alimentação extremamente regrada e baseada apenas em números (calorias e macros) pode não ser a melhor estratégia para sua saúde e vitalidade.
+with st.expander("⚠️ Aviso Importante"):
+            st.warning("""
+        ⚠️ **Importante**  
+        Uma alimentação extremamente regrada e baseada apenas em números (calorias e macros) pode não ser a melhor estratégia para sua saúde e vitalidade.
+        
+        Essa calculadora pode ajudar esteticamente e como referência inicial, mas não substitui uma alimentação equilibrada, natural e consciente.
+        
+        Além disso, esta ferramenta foi desenvolvida de forma amadora, sem formação profissional envolvida. Utilize como apoio, não como verdade absoluta.
+        """)
+        
+            st.markdown("""
+        ✨ Mais importante do que contar calorias é ouvir seu corpo  
+        e escolher alimentos que promovam saúde, equilíbrio e vitalidade.
+        """)
 
-Essa calculadora pode ajudar esteticamente e como referência inicial, mas não substitui uma alimentação equilibrada, natural e consciente.
-
-Além disso, esta ferramenta foi desenvolvida de forma amadora, sem formação profissional envolvida. Utilize como apoio, não como verdade absoluta.
-""")
-
-    st.markdown("""
-✨ Mais importante do que contar calorias é ouvir seu corpo  
-e escolher alimentos que promovam saúde, equilíbrio e vitalidade.
-""")
 
 
 
