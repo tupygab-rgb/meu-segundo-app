@@ -1,9 +1,9 @@
 import streamlit as st
 
-# ----------------------------
-# Cabeçalho
-# ----------------------------
-st.title("Calculadora de Calorias e Macros do TUPY")
+# ===============================
+# TÍTULO E INTRODUÇÃO
+# ===============================
+st.title("🥗 Calculadora de Calorias e Macros do TUPY")
 st.header("Preencha seus dados abaixo para começar!")
 
 st.markdown("""
@@ -14,50 +14,69 @@ Procure priorizar alimentos naturais, frescos e equilibrados, criando uma rotina
 
 st.divider()
 
-# ----------------------------
-# Inputs do usuário
-# ----------------------------
-nome = st.text_input("Nome: ")
-idade = st.number_input("Idade: ", min_value=10, max_value=150, step=1)
-peso = st.number_input("Peso (kg): ", min_value=30.0, max_value=400.0, step=0.1)
-altura = st.number_input("Altura (cm): ", min_value=100, max_value=300, step=1)
-sexo = st.selectbox("Sexo Biológico: ", ["Selecione...", "Masculino", "Feminino"])
+# ===============================
+# DADOS PESSOAIS
+# ===============================
+st.subheader("👤 Dados Pessoais")
+
+col_nome, col_sexo = st.columns([2, 1])
+
+with col_nome:
+    nome = st.text_input("Nome")
+
+with col_sexo:
+    sexo = st.selectbox("Sexo Biológico", ["Selecione...", "Masculino", "Feminino"])
+
+# ===============================
+# DADOS CORPORAIS
+# ===============================
+st.subheader("📏 Dados Corporais")
+
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    idade = st.number_input("Idade", min_value=10, max_value=150, step=1)
+
+with col2:
+    peso = st.number_input("Peso (kg)", min_value=30.0, max_value=400.0, step=0.1)
+
+with col3:
+    altura = st.number_input("Altura (cm)", min_value=100, max_value=300, step=1)
+
+# ===============================
+# CÁLCULO DA TMB
+# ===============================
+def calcular_tmb(idade, peso, altura, sexo):
+    if sexo == "Masculino":
+        return 88.36 + (13.4 * peso) + (4.8 * altura) - (5.7 * idade)
+    else:
+        return 447.6 + (9.2 * peso) + (3.1 * altura) - (4.3 * idade)
 
 tmb = None
 gcd = None
 resultado = None
 
-# ----------------------------
-# Função TMB
-# ----------------------------
-def calcular_tmb(idade, peso, altura, sexo):
-    if sexo == "Masculino":
-        return 88.36 + (13.4*peso) + (4.8*altura) - (5.7*idade)
-    else:
-        return 447.6 + (9.2*peso) + (3.1*altura) - (4.3*idade)
-
-# ----------------------------
-# Calcular TMB
-# ----------------------------
-if sexo != "Selecione...":
+if sexo != "Selecione..." and idade > 0 and peso > 0 and altura > 0:
     tmb = calcular_tmb(idade, peso, altura, sexo)
-    st.subheader(f"Sua Gasto Calórico Base é 💥 {tmb:.0f} Kcal")
+    st.divider()
+    st.subheader("🔥 Gasto Calórico Base (TMB)")
+    st.success(f"{tmb:.0f} Kcal por dia")
 else:
-    st.warning("Preencha todos campos acima para continuar.")
+    st.warning("Preencha corretamente todos os dados acima para continuar.")
 
-st.divider()
-
-# ----------------------------
-# Atividade física
-# ----------------------------
+# ===============================
+# ATIVIDADE FÍSICA
+# ===============================
 if tmb is not None:
-    st.write("Agora, vamos calcular seu gasto calórico de acordo com seu nível de atividade 💪:")
+    st.divider()
+    st.subheader("🏃‍♂️ Nível de Atividade Física")
+
     atividade = st.selectbox(
-        "Nível de atividade física:", 
+        "Selecione seu nível de atividade:",
         ["Selecione...", "Sedentário", "Levemente ativo", "Moderadamente ativo", "Muito ativo", "Extremamente ativo"]
     )
 
-    fator = {
+    fatores = {
         "Sedentário": 1.2,
         "Levemente ativo": 1.375,
         "Moderadamente ativo": 1.55,
@@ -66,52 +85,82 @@ if tmb is not None:
     }
 
     if atividade != "Selecione...":
-        gcd = tmb * fator[atividade]
-        st.subheader(f"Seu Gasto Calórico Diário estimado é 🔥 {gcd:.0f} Kcal")
-        
-        # ----------------------------
-        # Objetivo
-        # ----------------------------
-        objetivo = st.selectbox("Qual seu Objetivo?", ["Selecione...", "Perder Peso", "Manter o Peso", "Ganhar Peso"])
-        if objetivo != "Selecione...":
-            if objetivo == "Perder Peso":
-                resultado = gcd - 500
-                fat_prot, fat_gord = 2.0, 0.75
-            elif objetivo == "Manter o Peso":
-                resultado = gcd
-                fat_prot, fat_gord = 1.8, 0.75
-            elif objetivo == "Ganhar Peso":
-                resultado = gcd + 500
-                fat_prot, fat_gord = 1.8, 1.0
+        gcd = tmb * fatores[atividade]
+        st.success(f"Gasto Calórico Diário estimado: **{gcd:.0f} Kcal**")
 
-            st.success(f"**{nome}**, você deve consumir {resultado:.0f} Kcal por dia 🥗")
+# ===============================
+# OBJETIVO
+# ===============================
+if gcd is not None:
+    st.divider()
+    st.subheader("🎯 Objetivo")
 
-            # ----------------------------
-            # Macros
-            # ----------------------------
-            prot_g = peso * fat_prot
-            gord_g = peso * fat_gord
-            kcal_prot = prot_g * 4
-            kcal_gord = gord_g * 9
-            kcal_carb = resultado - (kcal_prot + kcal_gord)
-            carb_g = kcal_carb / 4
+    objetivo = st.selectbox(
+        "Qual seu objetivo?",
+        ["Selecione...", "Perder Peso", "Manter o Peso", "Ganhar Peso"]
+    )
 
-            st.divider()
-            st.subheader("Distribuição de Macros 🥩🥑🍚")
-            
-            col1, col2, col3 = st.columns(3)
-            col1.metric("Proteínas (g)", f"{prot_g:.1f}")
-            col2.metric("Gorduras (g)", f"{gord_g:.1f}")
-            col3.metric("Carboidratos (g)", f"{carb_g:.1f}")
+    if objetivo != "Selecione...":
+        if objetivo == "Perder Peso":
+            resultado = gcd - 500
+        elif objetivo == "Manter o Peso":
+            resultado = gcd
+        elif objetivo == "Ganhar Peso":
+            resultado = gcd + 500
 
-            # ----------------------------
-            # Aviso / explicação
-            # ----------------------------
-            with st.expander("⚠️ Aviso Importante"):
-                st.warning("""
-Esta calculadora serve apenas como **referência** e não substitui orientação profissional.  
+        st.success(f"👉 Consumo recomendado: **{resultado:.0f} Kcal por dia**")
 
-Uma alimentação extremamente regrada, baseada apenas em proteínas, carboidratos e gorduras, pode não ser a melhor para sua saúde e vitalidade.  
-Priorize sempre alimentos naturais e ouça seu corpo.  
-                """)
+# ===============================
+# MACROS
+# ===============================
+if resultado is not None:
+    st.divider()
+    st.subheader("🥩🥑🍚 Distribuição de Macros")
 
+    if objetivo == "Perder Peso":
+        fat_prot, fat_gord = 2.0, 0.75
+    elif objetivo == "Manter o Peso":
+        fat_prot, fat_gord = 1.8, 0.75
+    elif objetivo == "Ganhar Peso":
+        fat_prot, fat_gord = 1.8, 1.0
+
+    prot_g = peso * fat_prot
+    gord_g = peso * fat_gord
+
+    kcal_prot = prot_g * 4
+    kcal_gord = gord_g * 9
+    kcal_carb = resultado - (kcal_prot + kcal_gord)
+    carb_g = kcal_carb / 4
+
+    colp, colg, colc = st.columns(3)
+
+    with colp:
+        st.metric("Proteínas", f"{prot_g:.1f} g")
+
+    with colg:
+        st.metric("Gorduras", f"{gord_g:.1f} g")
+
+    with colc:
+        st.metric("Carboidratos", f"{carb_g:.1f} g")
+
+# ===============================
+# AVISO FINAL
+# ===============================
+if resultado is not None:
+    st.divider()
+
+    st.markdown(f"**{nome if nome else 'Espero que'}** tenha sido ajudado(a) por essa calculadora! 👊")
+
+    st.warning("""
+⚠️ **Importante**  
+Uma alimentação extremamente regrada e baseada apenas em números (calorias e macros) pode não ser a melhor estratégia para sua saúde e vitalidade.
+
+Essa calculadora pode ajudar esteticamente e como referência inicial, mas não substitui uma alimentação equilibrada, natural e consciente.
+
+Além disso, esta ferramenta foi desenvolvida de forma amadora, sem formação profissional envolvida. Utilize como apoio, não como verdade absoluta.
+""")
+
+    st.markdown("""
+✨ Mais importante do que contar calorias é ouvir seu corpo  
+e escolher alimentos que promovam saúde, equilíbrio e vitalidade.
+""")
