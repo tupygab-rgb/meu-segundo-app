@@ -155,11 +155,11 @@ if resultado is not None:
 with st.expander("⚠️ Aviso Importante"):
             st.warning("""
         ⚠️ **Importante**  
-        Uma alimentação extremamente regrada e baseada apenas em números (calorias e macros) pode não ser a melhor estratégia para sua saúde e vitalidade.
-        
-        Essa calculadora pode ajudar esteticamente e como referência inicial, mas não substitui uma alimentação equilibrada, natural e consciente.
-        
-        Além disso, esta ferramenta foi desenvolvida de forma amadora, sem formação profissional envolvida. Utilize como apoio, não como verdade absoluta.
+        Deixo claro que uma alimentação extremamente regrada, baseada apenas em proteínas, carboidratos e gorduras, provavelmente não será a melhor para sua saúde e vitalidade!
+
+Ela pode ajudar esteticamente, mas para que realmente seja completa, procure manter uma alimentação equilibrada e natural todos os dias.
+
+Além disso, essa calculadora foi feita de forma amadora, sem qualquer formação envolvida do autor. Objetivo é apenas te ajudar, entretanto, não use-a como verdade absoluta.
         """)
         
             st.markdown("""
@@ -168,6 +168,7 @@ with st.expander("⚠️ Aviso Importante"):
         """)
 st.write("Com os macros na palma da sua mão🤌, agora é só ficar atento a tabela nutricional do alimentos, anotar o que ingeriu e pronto!")
 st.info("Observação: existem vários aplicativos que facilitam essa anotação...")
+
 
 
 
